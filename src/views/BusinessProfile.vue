@@ -32,8 +32,8 @@
                           <div style="position: relative">
                             <div class="d-flex justify-space-between">
                               <p class="info-name mb-2">{{head.name}}</p>
-                              <v-icon class="info-name mb-2 pointer" @click="menu = !menu" color="#8B8B8B">mdi-dots-vertical</v-icon>
-                              <div class="menu-items" v-if="menu">
+                              <v-icon class="info-name mb-2 pointer" @click="selectMenu(index)" color="#8B8B8B">mdi-dots-vertical</v-icon>
+                              <div class="menu-items" v-if="(selectedMenu === index)">
                                 <p style="background: #023C98" class="py-1 mb-1 pl-2 white--text">Edit</p>
                                 <p class="mb-0 pl-2 py-1">Remove</p>
                               </div>
@@ -107,7 +107,8 @@ export default {
 
         }
       ],
-      menu: false
+      menu: false,
+      selectedMenu: null
     }
   },
   computed: {
@@ -116,6 +117,10 @@ export default {
   methods: {
     selectRole (index) {
       this.selectedRole = index
+    },
+    selectMenu (index) {
+      this.menu = !this.menu
+      this.selectedMenu = index
     }
   }
 }
