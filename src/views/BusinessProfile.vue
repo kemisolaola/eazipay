@@ -7,98 +7,49 @@
             <v-col cols='12' md='11' class='mt-'>
               <!-- Wallet Card -->
               <div class='pa-8' rounded='lg'>
-                <v-row>
-                  <v-col cols="2">
-                    <div class="roles-title">
-                      <p class="text-uppercase default-role white--text pl-2">default Roles</p>
-                    <p v-for="role in roleTitle" :key="role" class="pl-2">{{role}}</p>
+                <v-row no-gutters>
+                  <v-col cols="2" class="pr-0">
+                    <div class="roles-title mt-3">
+                    <p v-for="(role, index) in roleTitle" :key="index" @click="selectRole(index)" class="pl-2 py-2 pointer" :class="selectedRole === index ? 'role-active' : '' ">{{role}}</p>
                     </div>
-                    <p class="roles-title font-weight-bold pl-2 mt-9">Custom Roles</p>
-                    <p class="head-account pa-2">Head Account</p>
-                    <p class="create-role-info pl-2">You can create your own custom roles, and choose exactly what team members can see and do.</p>
-                    <v-btn class="text-capitalize create-role-btn py-4" color="#e4572e" elevation="0" dark x-small> <span><v-icon>mdi-plus</v-icon></span> Create New Role</v-btn>
-                  </v-col>
-                  <v-col>
+                    </v-col>
+                  <v-col >
                     <v-card class='settings-card pa-8' rounded='lg'>
                     <div class="d-flex justify-space-between">
                       <p class="management-role font-weight-bold text-left">Business Owner/CEO/Founder</p>
                       <v-btn class="text-capitalize" color="#E4572E" dark small elevation="0" outlined> <span><v-icon small>mdi-plus</v-icon></span>Add More</v-btn>
                     </div>
                     <v-divider class="mb-6"></v-divider>
-                    <v-card v-for="i in 3" :key="i" class="mb-4 business-container" outlined color="#023C98">
+                    <v-card v-for="head in companyHead" :key="head" class="mb-4 business-container" outlined :color="head.color">
                      <v-row>
                       <v-col cols="3" class="pa-5">
-                        <img src="@/assets/ceo.png" alt="">
+                        <img :src="head.img" alt="">
+
+                        <button class="upload-btn mt-5"> <span><v-icon color="white">mdi-tray-arrow-up</v-icon></span> Upload</button>
                       </v-col>
                       <v-col>
                         <div class="personal-info pl-6 pt-3">
                           <div>
-                          <p class="info-name mb-2">Tiamiyu Wasiu Oladimeji</p>
-                          <p class="contact-info mb-1"><span class="contact-info-title">Email:</span>tmwasiu7@gmail.com</p>
-                          <p class="contact-info  mb-1"><span class="contact-info-title">Phone Number:</span>08160178711</p>
-                          <p class="contact-info  mb-1"><span class="contact-info-title">BVN:</span> 8160178711</p>
-                          <p class="contact-info  mb-1"><span class="contact-info-title">House Address:</span> 16, Adebanjo Ammed Street, Ajah</p>
+                          <p class="info-name mb-2">{{head.name}}</p>
+                          <p class="contact-info mb-1"><span class="contact-info-title">Email:</span>{{head.email}}</p>
+                          <p class="contact-info  mb-1"><span class="contact-info-title">Phone Number:</span>{{head.phone}}1</p>
+                          <p class="contact-info  mb-1"><span class="contact-info-title">BVN:</span> {{head.bvn}}</p>
+                          <p class="contact-info  mb-1"><span class="contact-info-title">House Address:</span> {{head.address}}</p>
                         </div>
                         <div class="id-means mt-8 pa-6">
-                          <p class="text-center">Means of Identification</p>
+                          <p class="text-center identity-means-text">Means of Identification</p>
                           <div class="d-flex justify-center">
-                            <img src="@/assets/passports.png" alt="">
+                            <img :src="head.imgPassport" alt="">
                           </div>
                         </div>
                         </div>
                       </v-col>
                      </v-row>
                     </v-card>
-                    <v-row class="mt-7">
-                      <v-col cols="6">
-                        <v-card tile elevation="0" color="#0A244F" dark class="text-center">
-                          <p>What Role Can Access</p>
-                        </v-card>
-                        <div v-for="action in canDo" :key="action" class="px-6 d-flex justify-space-between">
-                          <p class="role-access-list mb-3">{{action}}</p>
-                          <v-icon color="#19A301">mdi-check</v-icon>
-                        </div>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-card tile elevation="0" color="#E4572E" dark class="text-center">
-                          <p>What Role Can Access</p>
-                        </v-card>
-                        <div v-for="action in cantDo" :key="action" class="px-6 d-flex justify-space-between">
-                          <p class="role-access-list mb-3">{{action}}</p>
-                          <v-icon color="#DE1C10">mdi-close</v-icon>
-                        </div>
-                      </v-col>
-                    </v-row>
                     </v-card>
                   </v-col>
                 </v-row>
               </div>
-
-              <!-- Admin Actions -->
-              <v-row class='mt-12'>
-                <v-col
-                  cols='12'
-                  md='3'
-                  v-for='(action, index) in adminActions'
-                  :key='index'
-                >
-                  <v-card
-                    color='#023C98'
-                    width='100%'
-                    height='125'
-                    class='pt-3'
-                    rounded='lg '
-                  >
-                    <v-img
-                      :src='action.img'
-                      width='50'
-                      height='50'
-                      class='mx-auto my-auto'
-                    ></v-img>
-                    <p class='text-center white--text pt-3'>{{ action.text }}</p>
-                  </v-card>
-                </v-col>
-              </v-row>
             </v-col>
           </v-row>
         </v-col>
@@ -114,14 +65,50 @@ export default {
   data () {
     return {
       name: 'Business Profile',
-      roleTitle: ['Admin', 'Assistant', 'Auditor'],
-      canDo: ['Add Bonus and Deduction', 'Add Compliance', 'Edit Compliance', 'Transaction History', 'Fund Wallet', 'Manage Inventory', 'Manage Invoice', 'Manage Receipt', 'Book Keeping Settings'],
-      cantDo: ['Purchase or Change Plan', 'Add Employee ', 'Edit Employee', 'Add Salary', 'Edit Salary', 'Run Payroll', 'Archive Employee', 'Pay Compliance', 'Fund Wallet', 'Withdraw from Wallet', 'Manage Account', 'Manage Business Profile', 'Manage Team'],
-      teamMembers: ['Ada Okonye', 'Edward Madaki', 'Adekule Ajasin', 'Zainab Muhammad']
+      selectedRole: 1,
+      roleTitle: ['Company', 'CEO/Founder', 'Company Directors', 'Account Information', 'Branch/Department'],
+      companyHead: [
+        {
+          name: 'Tiamiyu Wasiu Oladimeji',
+          email: 'tmwasiu7@gmail.com',
+          phone: '08160178711',
+          bvn: '8160178711',
+          color: '#023c98',
+          address: '16, Adebanjo Ammed Street, Ajah',
+          img: require('@/assets/ceo1.png'),
+          imgPassport: require('@/assets/passports.png')
+        },
+        {
+          name: 'Ejiro Odiamakwu Kelvin',
+          email: 'tmwasiu7@gmail.com',
+          phone: '08160178711',
+          bvn: '8160178711',
+          color: '#8B8B8B',
+          address: '16, Adebanjo Ammed Street, Ajah',
+          img: require('@/assets/ceo2.png'),
+          imgPassport: require('@/assets/passport2.png')
+        },
+        {
+          name: 'Aderonke Emmanuel Victor',
+          email: 'tmwasiu7@gmail.com',
+          phone: '08160178711',
+          bvn: '8160178711',
+          color: '#E0A409',
+          address: '16, Adebanjo Ammed Street, Ajah',
+          img: require('@/assets/ceo3.png'),
+          imgPassport: require('@/assets/passport3.png')
+
+        }
+      ]
     }
   },
   computed: {
     ...mapState(['lastName'])
+  },
+  methods: {
+    selectRole (index) {
+      this.selectedRole = index
+    }
   }
 }
 </script>
@@ -180,12 +167,15 @@ line-height: 38px;
 color: #444444;
   }
   .roles-title {
-    font-size: 12px;
-line-height: 19px;
-color: #8B8B8B;
+    font-size: 13px;
+line-height: 20px;
+color: #444444;
   }
-  .default-role {
-    background-color:  #023C98;;
+  .role-active{
+    background: #FFFFFF;
+border: 1px solid #E0E0E0;
+color: #E4572E;
+box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
   }
   .head-account {
 font-weight: 700;
@@ -222,6 +212,7 @@ font-size: 14px;
 line-height: 16px;
   color: #231f1f !important;
 }
+
 .team-members {
   font-weight: 500;
 font-size: 12px;
@@ -270,4 +261,22 @@ color: #444444;
   background: #F7F8FF;
 border-radius: 0px 0px 8px 8px;
 }
+.identity-means-text{
+  font-size: 16px;
+line-height: 19px;
+color: #444444;
+font-weight: 500;
+}
+.upload-btn {
+  width: 131px;
+height: 56px;
+background: rgba(255, 255, 255, 0.3);
+border: 1px solid rgba(185, 187, 192, 0.5);
+border-radius: 8px;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+color: #FFFFFF;
+}
+
   </style>

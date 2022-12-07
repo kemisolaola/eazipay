@@ -16,15 +16,13 @@
     <v-btn
       color="red"
       icon
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
       text
       ><v-badge color="#C92F02"  content="6" overlap>
         <img src="@/assets/bell.svg" width="16" />
       </v-badge>
     </v-btn>
 
-    <div class="d-flex align-center ml-16">
+    <div class="d-flex align-center ml-14">
       <v-avatar class="mr-4">
         <img src="@/assets/user.svg" alt="John" />
       </v-avatar>

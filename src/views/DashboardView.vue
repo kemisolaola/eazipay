@@ -4,7 +4,7 @@
       <v-col cols='12' md='11'>
         <h2>Welcome {{ lastName }}</h2>
         <h6>Pay and manage your employee in minutes</h6>
-        <v-row class='mt-10'>
+        <v-row class='mt-10' justify="space-between">
           <v-col cols='12' md='9' class='mt-'>
             <!-- Wallet Card -->
             <v-card class='blue-gradient pa-8 white--text' rounded='lg'>
@@ -51,19 +51,24 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col md='3'>
-            <div>
+          <v-col md='2'>
+            <div class="active-container">
               <div class='active-loan'>
-                <p class='text-center white--text py-1'>Active loans</p>
+                <p class='text-center white--text py-1 mb-0'>Active loans</p>
               </div>
-              <div>
-                <p>Next Repayment</p>
-                <p>Septermber 20,2022</p>
-                <p>N100,000.00</p>
+              <div class="text-center active-loan-div">
+                <p class="next-payment mb-1">Next Repayment</p>
+                <p class="date mb-1">Septermber 20,2022</p>
+                <p class="amount">N100,000.00</p>
               </div>
-              <div>
-                <p>Total Employee</p>
-                <p>50</p>
+              <div class="text-center mt-9 pb-4 px-3">
+                <p class="total-employ mb-1">Total Employee</p>
+                <p class="total-value text-left pl-3">50</p>
+                <v-progress-linear value="30" class="px-4" height="8" color="#0A244F"></v-progress-linear>
+                <div class="pt-1 gender d-flex justify-space-between">
+                  <p>Male</p>
+                  <p>Female</p>
+                </div>
               </div>
             </div>
           </v-col>
@@ -147,10 +152,53 @@ export default {
   background: rgba(12, 25, 47, 0.6) !important;
   border-radius: 8px;
 }
+.active-container {
+  background: #FFFFFF;
+border: 1px solid #FFFFFF;
+box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+}
 .active-loan {
   background: #e4572e;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0px 16px 16px 0px;
+  border-radius: 16px 16px 0px 0px;
+}
+.next-payment{
+  font-size: 11px;
+line-height: 14px;
+color: #5F5F5F;
+
+}
+.active-loan-div {
+  background: #FFFFFF;
+border: 1px solid #FFFFFF;
+box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+border-radius: 0 0 16px 16px;
+
+}
+.date {
+  font-size: 13px;
+color: #5F5F5F;
+}
+.amount{
+  font-weight: 700;
+font-size: 16px;
+color: #E4572E;
+}
+.total-employ{
+  font-weight: 500;
+font-size: 14px;
+color: #5F5F5F;
+}
+.total-value {
+  font-weight: 900;
+font-size: 27px;
+line-height: 30px;
+color: #444444;
+}
+.gender{
+  font-weight: 600;
+font-size: 9px;
+line-height: 12px;
 }
 .search-input {
   border: 1px solid #b9bbc0;
@@ -161,7 +209,7 @@ export default {
 }
 .search-btn{
   border-radius: 0px 16px 16px 0px;
-  height: 40px !important;
+  height: 42px !important;
 }
 .dashboard-table {
   background: inherit;
