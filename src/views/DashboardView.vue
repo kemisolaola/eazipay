@@ -94,21 +94,23 @@
           </v-btn>
           </v-col>
         </v-row>
-        <div class="dashboard-container">
-          <table class="dashboard-table">
-            <tr>
+        <div class="dashboard-container mt-6">
+          <table class="dashboard-table table-text">
+            <thead class="pb-3">
+            <tr class="text-center" style="background: inherit">
               <td>Name</td>
               <td>Details</td>
               <td>Date</td>
               <td>Time</td>
               <td>Status</td>
             </tr>
-            <tr class="dashboard-table-row" v-for="i in 60" :key="i">
-            <td>Adewale</td>
-            <td>Adewale</td>
-            <td>Adewale</td>
-            <td>Adewale</td>
-            <td class="primary--text">Adewale</td>
+            </thead>
+            <tr class="dashboard-table-row text-center py-5" v-for="(info, index) in tableData" :key="index">
+            <td>{{info.name}}</td>
+            <td>{{info.details}}</td>
+            <td>{{info.date}}</td>
+            <td>{{info.time}}</td>
+            <td class="primary--text font-weight-bold">{{info.status}}</td>
           </tr>
         </table>
         </div>
@@ -138,6 +140,43 @@ export default {
         {
           img: require('@/assets/admin/inventory.svg'),
           text: 'Inventory'
+        }
+      ],
+      tableData: [
+        {
+          name: 'Adewale Ajasin',
+          details: 'Took loan from eazipay',
+          date: 'August 15, 2022',
+          time: '10:35pm',
+          status: 'Processing'
+        },
+        {
+          name: 'Badmus Kemis',
+          details: 'Paid leave allowance..',
+          date: 'August 13, 2022',
+          time: '09:35pm',
+          status: 'Processing'
+        },
+        {
+          name: 'Dara Ventures ',
+          details: 'Sent invoice and receipt',
+          date: 'August 12, 2022',
+          time: '10:35pm',
+          status: 'Processing'
+        },
+        {
+          name: 'Dara Ventures ',
+          details: 'Sent invoice and receipt',
+          date: 'August 12, 2022',
+          time: '10:35pm',
+          status: 'Processing'
+        },
+        {
+          name: 'Dara Ventures ',
+          details: 'Sent invoice and receipt',
+          date: 'August 12, 2022',
+          time: '10:35pm',
+          status: 'Processing'
         }
       ]
     }
@@ -214,20 +253,40 @@ line-height: 12px;
 .dashboard-table {
   background: inherit;
   width: 100%;
-  height: 300px;
+  border-collapse: separate;
+  border-spacing: 0 15px;
 }
 .dashboard-container {
   background: inherit;
   height: 300px;
   overflow: hidden;
 }
+tr {
+  background: #FFFFFF;
+border-radius: 16px !important;
+}
+td:first-child {
+border-radius: 16px 0 0 16px !important;
+
+}
+td:last-child {
+border-radius: 0 16px 16px 0  !important;
+}
+th {padding: 9px;}
+td,th {padding: 10px 0 ;}
 
 .dashboard-table-row {
   background: #FFFFFF;
 border: 1px solid #B9BBC0 !important;
-border-radius: 16px !important;
+border-radius: 14px !important;
 padding: 20px !important;
 height: 30px;
 margin-bottom: 50px !important;
+}
+.table-text {
+  font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #4E4E4E;
 }
 </style>

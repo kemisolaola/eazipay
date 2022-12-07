@@ -20,17 +20,24 @@
                       <v-btn class="text-capitalize" color="#E4572E" dark small elevation="0" outlined> <span><v-icon small>mdi-plus</v-icon></span>Add More</v-btn>
                     </div>
                     <v-divider class="mb-6"></v-divider>
-                    <v-card v-for="head in companyHead" :key="head" class="mb-4 business-container" outlined :color="head.color">
+                    <v-card v-for="(head, index) in companyHead" :key="index" class="mb-4 business-container" outlined :color="head.color">
                      <v-row>
                       <v-col cols="3" class="pa-5">
                         <img :src="head.img" alt="">
-
-                        <button class="upload-btn mt-5"> <span><v-icon color="white">mdi-tray-arrow-up</v-icon></span> Upload</button>
+                          <button class="upload-btn mt-8 ml-2"> <span><v-icon color="white" class="pr-1">mdi-tray-arrow-up</v-icon></span> Upload</button>
+                          <button class="close-btn mt-8 ml-2"> <span><v-icon color="#ffffff99" class="pr-1">mdi-close-circle-outline</v-icon></span>Cancel</button>
                       </v-col>
                       <v-col>
                         <div class="personal-info pl-6 pt-3">
-                          <div>
-                          <p class="info-name mb-2">{{head.name}}</p>
+                          <div style="position: relative">
+                            <div class="d-flex justify-space-between">
+                              <p class="info-name mb-2">{{head.name}}</p>
+                              <v-icon class="info-name mb-2 pointer" @click="menu = !menu" color="#8B8B8B">mdi-dots-vertical</v-icon>
+                              <div class="menu-items" v-if="menu">
+                                <p style="background: #023C98" class="py-1 mb-1 pl-2 white--text">Edit</p>
+                                <p class="mb-0 pl-2 py-1">Remove</p>
+                              </div>
+                            </div>
                           <p class="contact-info mb-1"><span class="contact-info-title">Email:</span>{{head.email}}</p>
                           <p class="contact-info  mb-1"><span class="contact-info-title">Phone Number:</span>{{head.phone}}1</p>
                           <p class="contact-info  mb-1"><span class="contact-info-title">BVN:</span> {{head.bvn}}</p>
@@ -99,7 +106,8 @@ export default {
           imgPassport: require('@/assets/passport3.png')
 
         }
-      ]
+      ],
+      menu: false
     }
   },
   computed: {
@@ -278,5 +286,25 @@ font-size: 14px;
 line-height: 19px;
 color: #FFFFFF;
 }
-
+.close-btn {
+  width: 131px;
+height: 56px;
+background: inherit;
+border: 1px solid rgba(185, 187, 192, 0.5);
+border-radius: 8px;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+color: #ffffff99;}
+.menu-items{
+  width: 100px;
+  background: #fff;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  font-weight: 500;
+font-size: 13px;
+line-height: 16px;
+  box-shadow: -4px 2px 10px rgba(0, 0, 0, 0.15);
+}
   </style>

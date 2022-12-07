@@ -16,6 +16,7 @@
     <v-btn
       color="red"
       icon
+      to="/settings/manage-account"
       text
       ><v-badge color="#C92F02"  content="6" overlap>
         <img src="@/assets/bell.svg" width="16" />

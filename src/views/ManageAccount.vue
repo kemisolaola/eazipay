@@ -16,7 +16,7 @@
                   <v-col cols="2">
                     <div class="roles-title">
                       <p class="text-uppercase default-role white--text pl-2">default Roles</p>
-                    <p v-for="role in roleTitle" :key="role" class="pl-2">{{role}}</p>
+                    <p v-for="(role, index) in roleTitle" :key="index" class="pl-2">{{role}}</p>
                     </div>
                     <p class="roles-title font-weight-bold pl-2 mt-9">Custom Roles</p>
                     <p class="head-account pa-2">Head Account</p>
@@ -31,7 +31,7 @@
                     <p class="head-info">Head make sure that financial reports are up-to-date and compliant with standards. They produce periodic activity updates for top management and an annual budget proposal.</p>
                     <p class="role-info">Team Members with the role</p>
                     <div class="d-flex ">
-                      <div class="px-1 team-member-div px-2 py-1 mr-4" v-for="name in teamMembers" :key="name">
+                      <div class="px-1 team-member-div px-2 py-1 mr-4" v-for="(name, i) in teamMembers" :key="i">
                         <p class="team-members mb-0 mt-1"><v-avatar size="25">
                           <img src="@/assets/members.svg" alt="" />
                         </v-avatar> {{name}}</p>
@@ -42,7 +42,7 @@
                         <v-card tile elevation="0" color="#0A244F" dark class="text-center">
                           <p>What Role Can Access</p>
                         </v-card>
-                        <div v-for="action in canDo" :key="action" class="px-6 d-flex justify-space-between">
+                        <div v-for="(action, index) in canDo" :key="index" class="px-6 d-flex justify-space-between">
                           <p class="role-access-list mb-3">{{action}}</p>
                           <v-icon color="#19A301">mdi-check</v-icon>
                         </div>
@@ -51,7 +51,7 @@
                         <v-card tile elevation="0" color="#E4572E" dark class="text-center">
                           <p>What Role Can Access</p>
                         </v-card>
-                        <div v-for="action in cantDo" :key="action" class="px-6 d-flex justify-space-between">
+                        <div v-for="(action, index) in cantDo" :key="index" class="px-6 d-flex justify-space-between">
                           <p class="role-access-list mb-3">{{action}}</p>
                           <v-icon color="#DE1C10">mdi-close</v-icon>
                         </div>
